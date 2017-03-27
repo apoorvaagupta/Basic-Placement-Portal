@@ -27,18 +27,18 @@ const student = sequelize.define('student', {
     languages:Sequelize.STRING,
     projects: Sequelize.STRING,
     trainings:Sequelize.STRING,
-    cbStudent: Sequelize.BOOLEAN,
-    cbCourses:Sequelize.STRING
+    // cbStudent:{type:Sequelize.BOOLEAN,defaultValue:false},
+    // cbCourses:Sequelize.STRING
 
 });
 
 //function to add a student
-function addStudent(body, done) {
+function addStudent(firstname,lastname,email,password, done) {
     student.create({
-        firstname: body.firstname,
-        lastname: body.lastname,
-        email: body.email,
-        password: body.password
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        password:password
     }).then(function (row) {
         done(row);
     }).catch(function (err) {
@@ -65,16 +65,25 @@ function getStudentProfile(id,done) {
     })
 }
 
-function updatestudentprofile(id,firstname, lastname, email, done) {
+function updatestudentprofile(id,data, done) {
     student.findOne({where:{id:id}}).then(function (row) {
         if(row==null){
             done(false);
         }
         else{
             row.update({
-                firstname:firstname,
-                lastname:lastname,
-                email:email
+                firstname:data.firstname,
+                lastname:data.lastname,
+                email:data.email,
+                contact: data.contact,
+                pincode: data.pincode,
+                education:data.education,
+                skills:data.skills,
+                languages:data.languages,
+                projects: data.projects,
+                trainings:data.trainings,
+                cbStudent: data.cbCourses,
+                cbCourses:data.cbCourses
             }).then(function () {
                 done(true);
             });

@@ -9,5 +9,13 @@ $('document').ready(function () {
        $('#firstname').text(data.firstname);
        $('#lastname').text(data.lastname);
        $('#email').text(data.email);
+       $('#pincode').text(data.pincode);
+       $('#contact').text(data.contact);
+       $('#education').text(data.education);
+       $('#skills').text(data.skills);
+       $('#languages').text(data.languages);
+       $('#projects').text(data.projects);
+       $('#trainigs').text(data.trainings);
+
    });
 });
