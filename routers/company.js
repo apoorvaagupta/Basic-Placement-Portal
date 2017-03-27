@@ -23,6 +23,8 @@ router.post('/login', function (req, res) {
     db.getCompany(req.body.email, req.body.password, function (row) {
         if (row != null) {
             res.send({url: "http://localhost:4000/company/dashboard", isSuccess: "true", companyId: row.id});
+        }else{
+            res.send({url:"",isSuccess:"false",companyId:-1});
         }
     });
 });
@@ -38,8 +40,8 @@ router.get('/profile', function (req, res) {
 });
 
 router.post('/update', function (req, res) {
-    console.log(req.body.email, req.body.name, req.body.password);
-    db.updateCompany(req.body, req.query.companyId, function (row) {
+    // console.log(req.body.email, req.body.name, req.body.password);
+    db.updateCompany(req.body.details, req.query.companyId, function (row) {
         if (row == null) {
             console.log(1);
             res.send({isSuccess: 'false'});

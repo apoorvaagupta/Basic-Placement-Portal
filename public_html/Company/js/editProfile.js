@@ -12,9 +12,11 @@ $(document).ready(function () {
 
     $('#save').click(function () {
         $.post("http://localhost:4000/company/update?companyId=" + localStorage.getItem("companyId"), {
-            name: $('#name').val(),
-            email: $('#email').val(),
-            password: $('#password').val()
+            details: {
+                name: $('#name').val(),
+                email: $('#email').val(),
+                password: $('#password').val()
+            }
         }, function (data) {
             window.location.replace(data.url);
 
