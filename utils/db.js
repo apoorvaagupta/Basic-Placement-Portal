@@ -65,16 +65,25 @@ function getStudentProfile(id,done) {
     })
 }
 
-function updatestudentprofile(id,firstname, lastname, email, done) {
+function updatestudentprofile(id,data, done) {
     student.findOne({where:{id:id}}).then(function (row) {
         if(row==null){
             done(false);
         }
         else{
             row.update({
-                firstname:firstname,
-                lastname:lastname,
-                email:email
+                firstname:data.firstname,
+                lastname:data.lastname,
+                email:data.email,
+                contact: data.contact,
+                pincode: data.pincode,
+                education:data.education,
+                skills:data.skills,
+                languages:data.languages,
+                projects: data.projects,
+                trainings:data.trainings,
+                cbStudent: data.cbCourses,
+                cbCourses:data.cbCourses
             }).then(function () {
                 done(true);
             });
