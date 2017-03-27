@@ -14,7 +14,8 @@
     router.post('/add', function (req, res) {
 
         console.log(req.body.email, req.body.password);
-        db.addStudent(req.body,
+        db.addStudent(req.body.firstname,req.body.lastname,
+                        req.body.email,req.body.password,
         function (row) {
             res.send({
                 url:"http://localhost:4000/student/dashboard",
@@ -42,7 +43,7 @@
     });
 
     router.post('/update',function (req,res) {
-        db.updatestudentprofile(req.body.id,req.body.firstname,req.body.lastname,req.body.email,function (bool) {
+        db.updatestudentprofile(req.body.details.id,req.body.details,function (bool) {
             if(bool===true) {
                 res.send({
                     url: "http://localhost:4000/student/dashboard",

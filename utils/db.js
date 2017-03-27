@@ -33,12 +33,12 @@ const student = sequelize.define('student', {
 });
 
 //function to add a student
-function addStudent(body, done) {
+function addStudent(firstname,lastname,email,password, done) {
     student.create({
-        firstname: body.firstname,
-        lastname: body.lastname,
-        email: body.email,
-        password: body.password
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        password:password
     }).then(function (row) {
         done(row);
     }).catch(function (err) {
