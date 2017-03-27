@@ -139,16 +139,21 @@ function getCompanyFromId(id,done){
 
 }
 
-function updateCompany(body,id,done) {
+function updateCompany(data,id,done) {
     Company.findOne({where:{id:id}}).then(function (data) {
         if(data==null){
             done(null);
         }
         else{
             data.update({
-                name:body.name,
-                email:body.email,
-                password:body.password
+                name:data.name,
+                email:data.email,
+                website:data.website,
+                locations:data.locations,
+                skills:data.skills,
+                repName:data.repName,
+                repNumber:data.repNumber
+
             }).then(function () {
                 done(1);
             });
