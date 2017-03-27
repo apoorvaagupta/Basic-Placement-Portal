@@ -27,8 +27,8 @@ const student = sequelize.define('student', {
     languages:Sequelize.STRING,
     projects: Sequelize.STRING,
     trainings:Sequelize.STRING,
-    cbStudent: Sequelize.INTEGER,
-    cbCourses:Sequelize.STRING
+    // cbStudent:{type:Sequelize.BOOLEAN,defaultValue:false},
+    // cbCourses:Sequelize.STRING
 
 });
 

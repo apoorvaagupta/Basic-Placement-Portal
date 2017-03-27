@@ -17,8 +17,6 @@ $('document').ready(function () {
         $('#editlanguages').val(data.languages);
         $('#editprojects').val(data.projects);
         $('#edittrainigs').val(data.trainings);
-        $('#editcbStudent').val(data.cbStudent);
-        $('#editcbCourses').val(data.cbCourses);
 
     });
     $('#save').click(function () {
@@ -32,12 +30,11 @@ $('document').ready(function () {
         var trainings = $('#edittrainings').val();
         var projects = $('#editprojects').val();
         var lang = $('#editlanguages').val();
-        //var cbs = $('#editcbStudent').val();
-        var cbc = $('#editcbCourses').val();
 
 
 
-        console.log(fn, ln, email);
+
+        //  console.log(cbs);
 
         $.post("http://localhost:4000/student/update", {
             details: {
@@ -52,8 +49,6 @@ $('document').ready(function () {
                 trainings: trainings,
                 projects: projects,
                 languages: lang,
-          //      cbStudent: cbs,
-                cbCourses: cbc
             }
         }, function (data) {
             if (data.isSuccess === "true") {

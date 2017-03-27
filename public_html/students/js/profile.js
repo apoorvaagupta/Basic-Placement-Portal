@@ -16,8 +16,6 @@ $('document').ready(function () {
        $('#languages').text(data.languages);
        $('#projects').text(data.projects);
        $('#trainigs').text(data.trainings);
-       $('#cbStudent').text(data.cbStudent);
-       $('#cbCourses').text(data.cbCourses);
 
    });
 });
