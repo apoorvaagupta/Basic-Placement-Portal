@@ -87,8 +87,8 @@ const Company = sequelize.define('Company', {
     email: Sequelize.STRING,
     password: Sequelize.STRING,
     website:{type:Sequelize.STRING,allowNull:true},
-    locations:Sequelize.ARRAY({type:Sequelize.STRING,allowNull:true}),
-    skills:{type:Sequelize.ARRAY({type:Sequelize.STRING),allowNull:true},
+    locations:Sequelize.STRING,
+    skills:Sequelize.STRING,
     repName:{type:Sequelize.STRING,allowNull:true},
     repNumber:{type:Sequelize.BIGINT,allowNull:true}
 });
