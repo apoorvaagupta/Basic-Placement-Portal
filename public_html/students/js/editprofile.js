@@ -10,11 +10,32 @@ $('document').ready(function () {
         $('#editfirstname').val(data.firstname);
         $('#editlastname').val(data.lastname);
         $('#editemail').val(data.email);
+        $('#editpincode').val(data.pincode);
+        $('#editcontact').val(data.contact);
+        $('#editeducation').val(data.education);
+        $('#editskills').val(data.skills);
+        $('#editlanguages').val(data.languages);
+        $('#editprojects').val(data.projects);
+        $('#edittrainigs').val(data.trainings);
+        $('#editcbStudent').val(data.cbStudent);
+        $('#editcbCourses').val(data.cbCourses);
+
     });
     $('#save').click(function () {
         var fn = $('#editfirstname').val();
         var ln = $('#editlastname').val();
         var email = $('#editemail').val();
+        var pc = $('#editpincode').val();
+        var contact = $('#editcontact').val();
+        var edu = $('#editeducation').val();
+        var skills = $('#skills').val();
+        var trainings = $('#edittrainings').val();
+        var projects = $('#editprojects').val();
+        var lang = $('#editlanguages').val();
+        //var cbs = $('#editcbStudent').val();
+        var cbc = $('#editcbCourses').val();
+
+
 
         console.log(fn, ln, email);
 
@@ -23,7 +44,16 @@ $('document').ready(function () {
                 id: localStorage.getItem("studentId"),
                 firstname: fn,
                 lastname: ln,
-                email: email
+                email: email,
+                pincode: pc,
+                contact: contact,
+                education: edu,
+                skills: skills,
+                trainings: trainings,
+                projects: projects,
+                languages: lang,
+          //      cbStudent: cbs,
+                cbCourses: cbc
             }
         }, function (data) {
             if (data.isSuccess === "true") {
