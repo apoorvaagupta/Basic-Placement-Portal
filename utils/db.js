@@ -20,25 +20,25 @@ const student = sequelize.define('student', {
     lastname: Sequelize.STRING,
     email: Sequelize.STRING,
     password: Sequelize.STRING,
-    contact: Sequelize.BIGINT,
-    pincode: Sequelize.INTEGER,
-    education: {type:Sequelize.ARRAY({type:Sequelize.STRING})},
-    skills: {type:Sequelize.ARRAY({type:Sequelize.STRING})},
-    languages: Sequelize.ARRAY(Sequelize.STRING),
-    projects: {type:Sequelize.ARRAY({type:Sequelize.STRING})},
-    trainings: {type:Sequelize.ARRAY({type:Sequelize.STRING})},
+    contact: {type: Sequelize.BIGINT,allowNull: true},
+    pincode: {type: Sequelize.INTEGER, allowNull: true},
+    education:{type:Sequelize.STRING},
+    skills:Sequelize.STRING,
+    languages:Sequelize.STRING,
+    projects: Sequelize.STRING,
+    trainings:Sequelize.STRING,
     cbStudent: Sequelize.BOOLEAN,
-    cbCourses: {type:Sequelize.ARRAY({type:Sequelize.STRING})}
+    cbCourses:Sequelize.STRING
 
 });
 
 //function to add a student
-function addStudent(firstname, lastname, email, password, done) {
+function addStudent(body, done) {
     student.create({
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        password: password
+        firstname: body.firstname,
+        lastname: body.lastname,
+        email: body.email,
+        password: body.password
     }).then(function (row) {
         done(row);
     }).catch(function (err) {
