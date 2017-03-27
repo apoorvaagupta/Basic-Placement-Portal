@@ -14,8 +14,7 @@
     router.post('/add', function (req, res) {
 
         console.log(req.body.email, req.body.password);
-        db.addStudent(req.body.firstname,req.body.lastname,
-                        req.body.email,req.body.password,
+        db.addStudent(req.body,
         function (row) {
             res.send({
                 url:"http://localhost:4000/student/dashboard",
