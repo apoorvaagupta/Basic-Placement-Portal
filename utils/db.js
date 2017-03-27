@@ -85,7 +85,12 @@ const Company = sequelize.define('Company', {
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
     name: Sequelize.STRING,
     email: Sequelize.STRING,
-    password: Sequelize.STRING
+    password: Sequelize.STRING,
+    website:Sequelize.STRING,
+    locations:Sequelize.ARRAY(Sequelize.STRING),
+    skills:{type:Sequelize.ARRAY({type:Sequelize.STRING})},
+    repName:Sequelize.STRING,
+    repNumber:Sequelize.BIGINT
 });
 
 function addCompany(name, email, password, done) {
