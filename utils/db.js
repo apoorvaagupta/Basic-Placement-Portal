@@ -5,7 +5,7 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('hb', 'cbuser', 'cbpass', {
     host: 'localhost',
-    dialect: 'mysql'
+    dialect: 'postgres'
 });
 
 sequelize.sync().then(function () {
