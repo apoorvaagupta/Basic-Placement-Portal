@@ -100,7 +100,7 @@ function getcompanies(done) {
 
 }
 
-const Company = sequelize.define('Company', {
+const Company = sequelize.define('company', {
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
     name: Sequelize.STRING,
     email: Sequelize.STRING,
