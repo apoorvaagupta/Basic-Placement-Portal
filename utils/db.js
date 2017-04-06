@@ -32,6 +32,16 @@ const student = sequelize.define('student', {
 
 });
 
+const applications = sequelize.define('applications',{
+    id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+    status: Sequelize.STRING,
+    date: Sequelize.INTEGER,
+    app: Sequelize.STRING
+});
+
+applications.belongsTo(student);
+//student.hasMany(applications);
+
 //function to add a student
 function addStudent(firstname,lastname,email,password, done) {
     student.create({

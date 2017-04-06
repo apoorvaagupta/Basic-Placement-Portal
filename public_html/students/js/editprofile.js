@@ -16,7 +16,7 @@ $('document').ready(function () {
         $('#editskills').val(data.skills);
         $('#editlanguages').val(data.languages);
         $('#editprojects').val(data.projects);
-        $('#edittrainigs').val(data.trainings);
+        $('#edittrainings').val(data.trainings);
 
     });
     $('#save').click(function () {
@@ -26,7 +26,7 @@ $('document').ready(function () {
         var pc = $('#editpincode').val();
         var contact = $('#editcontact').val();
         var edu = $('#editeducation').val();
-        var skills = $('#skills').val();
+        var skills = $('#editskills').val();
         var trainings = $('#edittrainings').val();
         var projects = $('#editprojects').val();
         var lang = $('#editlanguages').val();
@@ -34,7 +34,8 @@ $('document').ready(function () {
 
 
 
-        //  console.log(cbs);
+        //  .
+        // console.log(cbs);
 
         $.post("http://localhost:4000/student/update", {
             details: {
