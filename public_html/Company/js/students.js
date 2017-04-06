@@ -11,29 +11,27 @@ $(document).ready(function () {
         if (data.isSuccess == 'true') {
 
             console.log(data.rows);
-            const accordian = $('#accordian');
+            const cards = $('#cards');
             for (let i = 0; i < data.count; i++) {
-                accordian.append(`<div class="panel panel-default">
-                    <div class="panel-heading" role="tab">
-                    <h3 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordian" href="#acc` + i + `"
-                aria-expanded="true" aria-controls="acc` + i + `" id="heading` + i + `">
-                   </a>
-                </h3>
-                </div>
-                <div role="tabpanel" class="panel-collapse collapse" id="acc` + i + `"
-                aria-labelledby="heading`+i+`">
-                    <div class="panel-body">
-                    <p id="panelBody`+i+`">
-                </p>
-                </div>
-                </div>
-                </div>`);
+                cards.append(`
+                    <div class="card col-xs-4">
+                        <img src="/img/student.png">
+                        <div class="cardHeading"">
+                            <h3>
+                                <a href="#` + i + `" id="heading` + i + `">
+                                </a>
+                            </h3>
+                        </div>
+                        <div class="cardBody" id="body` + i + `">
+                            <p id="body`+i+`">
+                            </p>
+                        </div>
+                    </div>
+                `);
                 console.log(data.rows[i].firstname+" "+data.rows[i].lastname);
                 $('#heading'+i).text(data.rows[i].firstname+" "+data.rows[i].lastname);
-                $('#panelBody'+i).text(data.rows[i].email);
+                $('#body'+i).text(data.rows[i].email);
             }
-            $('#acc0').toggleClass('in');
         }
     });
 });

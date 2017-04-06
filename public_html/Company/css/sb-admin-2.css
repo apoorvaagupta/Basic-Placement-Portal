@@ -111,3 +111,14 @@ body {
 .btn-danger.btn-outline:hover {
   color: white;
 }
+
+
+.card{
+  /*height: 100px;*/
+  border: 1px solid #adadad;
+  text-align: center;
+}
+
+.cardHeading > h3{
+    margin-top: 0px; !important;
+}
