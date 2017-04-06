@@ -187,3 +187,79 @@ function getStudents(filter1,filter2,done) {
     })
 }
 module.exports = {addStudent, addCompany, getCompany, getStudent, getStudentProfile,updatestudentprofile,getCompanyFromId,updateCompany,getStudents,getcompanies};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const jobs=sequelize.define("jobs",{
+    id:{type:Sequelize.INTEGER,autoIncrement:true,primaryKey:true},
+    title:Sequelize.STRING,
+    description:Sequelize.STRING(1234),
+    skills:Sequelize.ARRAY(Sequelize.STRING),
+    jobType:Sequelize.STRING,
+    location:Sequelize.STRING,
+    stipend:Sequelize.STRING,
+    active:Sequelize.BOOLEAN,
+    startDate:Sequelize.DATE,
+    endDate:Sequelize.DATE
+});
