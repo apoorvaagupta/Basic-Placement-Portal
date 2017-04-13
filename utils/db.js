@@ -54,8 +54,8 @@ const jobs=sequelize.define("jobs",{
     location:Sequelize.STRING,
     stipend:Sequelize.STRING,
     active:Sequelize.BOOLEAN,
-    startDate:Sequelize.DATE,
-    endDate:Sequelize.DATE
+    startDate:Sequelize.DATEONLY,
+    endDate:Sequelize.DATEONLY
 });
 
 jobs.belongsTo(Company);
