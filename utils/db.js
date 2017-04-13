@@ -32,6 +32,34 @@ const student = sequelize.define('student', {
 
 });
 
+const Company = sequelize.define('company', {
+    id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+    name: Sequelize.STRING,
+    email: Sequelize.STRING,
+    password: Sequelize.STRING,
+    website:Sequelize.STRING,
+    locations:Sequelize.ARRAY(Sequelize.STRING),
+    skills:Sequelize.ARRAY(Sequelize.STRING),
+    repName:Sequelize.STRING,
+    repNumber:Sequelize.BIGINT,
+});
+
+
+const jobs=sequelize.define("jobs",{
+    id:{type:Sequelize.INTEGER,autoIncrement:true,primaryKey:true},
+    title:Sequelize.STRING,
+    description:Sequelize.STRING(1234),
+    skills:Sequelize.ARRAY(Sequelize.STRING),
+    jobType:Sequelize.STRING,
+    location:Sequelize.STRING,
+    stipend:Sequelize.STRING,
+    active:Sequelize.BOOLEAN,
+    startDate:Sequelize.DATE,
+    endDate:Sequelize.DATE
+});
+
+jobs.belongsTo(Company);
+
 const applications = sequelize.define('applications',{
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
     status: Sequelize.STRING,
@@ -40,6 +68,7 @@ const applications = sequelize.define('applications',{
 });
 
 applications.belongsTo(student);
+applications.belongsTo(jobs);
 //student.hasMany(applications);
 
 //function to add a student
@@ -110,17 +139,6 @@ function getcompanies(done) {
 
 }
 
-const Company = sequelize.define('company', {
-    id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-    name: Sequelize.STRING,
-    email: Sequelize.STRING,
-    password: Sequelize.STRING,
-    website:Sequelize.STRING,
-    locations:Sequelize.ARRAY(Sequelize.STRING),
-    skills:Sequelize.ARRAY(Sequelize.STRING),
-    repName:Sequelize.STRING,
-    repNumber:Sequelize.BIGINT,
-});
 
 function addCompany(name, email, password, done) {
     Company.create({
@@ -251,15 +269,3 @@ module.exports = {addStudent, addCompany, getCompany, getStudent, getStudentProf
 
 
 
-const jobs=sequelize.define("jobs",{
-    id:{type:Sequelize.INTEGER,autoIncrement:true,primaryKey:true},
-    title:Sequelize.STRING,
-    description:Sequelize.STRING(1234),
-    skills:Sequelize.ARRAY(Sequelize.STRING),
-    jobType:Sequelize.STRING,
-    location:Sequelize.STRING,
-    stipend:Sequelize.STRING,
-    active:Sequelize.BOOLEAN,
-    startDate:Sequelize.DATE,
-    endDate:Sequelize.DATE
-});
