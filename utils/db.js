@@ -59,6 +59,7 @@ const jobs=sequelize.define("jobs",{
 });
 
 jobs.belongsTo(Company);
+Company.hasMany(jobs);
 
 const applications = sequelize.define('applications',{
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
@@ -69,7 +70,8 @@ const applications = sequelize.define('applications',{
 
 applications.belongsTo(student);
 applications.belongsTo(jobs);
-//student.hasMany(applications);
+student.hasMany(applications);
+jobs.hasMany(applications);
 
 //function to add a student
 function addStudent(firstname,lastname,email,password, done) {

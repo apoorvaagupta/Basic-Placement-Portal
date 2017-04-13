@@ -122,3 +122,12 @@ body {
 .cardHeading > h3{
     margin-top: 0px; !important;
 }
+
+#addNewJob{
+  font-size: 30px;
+  /*color: #d9534f;*/
+}
+
+#addNewJob:hover{
+  color:#d9534f;
+}

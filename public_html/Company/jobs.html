@@ -132,17 +132,88 @@
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Dashboard</h1>
+
+    <div id="addNewJobModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Add New Job</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form class="form" id="addNewJobForm">
+                            <div class="form-group col-xs-12">
+                                <input id="newJobTitle" type="text" name="jobTitle" class="form-control"
+                                       placeholder="Job Title">
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <textarea id="newJobDescription" name="jobDescription" class="form-control"
+                                          placeholder="Job Description" rows="2"></textarea>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <input id="newJobSkills" type="text" name="jobSkills"
+                                       class="form-control" placeholder="Job Skills">
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <!--<label class="radio-inline"><input type="radio" name="optradio">Option 1</label>-->
+                                <!--<label class="radio-inline"><input type="radio" name="optradio">Option 2</label>-->
+
+                                <label class="radio-inline"><input type="radio" name="jobType">Intern</label>
+                                <label class="radio-inline"><input type="radio" name="jobType">Full Time</label>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <input id="newJobLocation" type="text" name="jobLocation"
+                                       class="form-control" placeholder="Job Location">
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <input id="newJobStipend" type="text" name="jobStipend"
+                                       class="form-control" placeholder="Job Stipend">
+                            </div>
+
+
+
+
+
+                            <div class="form-group col-xs-12 text-center">
+                                <button type="submit" id="companySignUpButton"
+                                        class="btn btn-default btn-info network-name">Sign Up
+                                </button>
+                                &nbsp;&nbsp;
+                                <button class="btn btn-default btn-info network-name" data-dismiss="modal">Cancel
+                                </button>
+                            </div>
+                        </form>
+                        <hr class="intro-divider">
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <a class="btn btn-danger">Sign Up Using Coding Blocks</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.col-lg-12 -->
         </div>
-        <!-- /.row -->
-        <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
+</div>
+</div>
+
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <span>Jobs</span>
+                <a class="btn" id="addNewJob">+</a>
+
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
@@ -153,7 +224,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.js"></script>
 
-<script src="./js/index.js"></script>
+<script src="./js/jobs.js"></script>
 
 </body>
 
