@@ -206,9 +206,25 @@ function getStudents(filter1,filter2,done) {
         done(data.rows,data.count);
     })
 }
-module.exports = {addStudent, addCompany, getCompany, getStudent, getStudentProfile,updatestudentprofile,getCompanyFromId,updateCompany,getStudents,getcompanies};
+module.exports = {addStudent, addCompany, getCompany, getStudent, getStudentProfile,updatestudentprofile,getCompanyFromId,updateCompany,getStudents,getcompanies,addJob};
 
-
+function addJob(data,done){
+    jobs.create({
+        title:data.title,
+        description:data.description,
+        skills:data.skills,
+        jobType:data.jobType,
+        location:data.location,
+        stipend:data.stipend,
+        active:data.active,
+        startDate:data.startDate,
+        endDate:data.endDate
+    }).then(function (row) {
+        done();
+    }).catch(function (err) {
+        throw err;
+    })
+}
 
 
 

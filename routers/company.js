@@ -57,6 +57,12 @@ router.get('/students',function (req,res) {
     })
 });
 
+router.post('/addNewJob',function (req,res) {
+    db.addJob(req.body.data, function () {
+        res.send({isSuccess: "true"})
+    });
+})
+
 router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/Company'));
 
 module.exports = router;
