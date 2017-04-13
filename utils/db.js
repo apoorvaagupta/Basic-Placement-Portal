@@ -209,6 +209,15 @@ function getStudents(filter1,filter2,done) {
 module.exports = {addStudent, addCompany, getCompany, getStudent, getStudentProfile,updatestudentprofile,getCompanyFromId,updateCompany,getStudents,getcompanies,addJob};
 
 function addJob(data,done){
+    data.skills=[data.skills]; //Change After asking sir
+    if(data.startDate===""){
+        data.startDate=null;
+    }
+    if(data.endDate===""){
+        data.endDate=null;
+    }
+
+
     jobs.create({
         title:data.title,
         description:data.description,
@@ -218,7 +227,8 @@ function addJob(data,done){
         stipend:data.stipend,
         active:data.active,
         startDate:data.startDate,
-        endDate:data.endDate
+        endDate:data.endDate,
+        companyId:data.companyId
     }).then(function (row) {
         done();
     }).catch(function (err) {

@@ -23,18 +23,30 @@ $(document).ready(function () {
         data = {
             title: $("#newJobTitle").val(),
             description: $("#newJobDescription").val(),
-            skills: $("#newjobskills").val(),
+            skills: $("#newJobSkills").val(),
             jobType: $("input[name='jobType']:checked").val(),
-            location: $("#newjoblocation").val(),
-            stipend: $("#newjobstipend").val(),
-            active: $("#newJobActive").val(),
-            startDate: $("#newjobstartdate").val(),
-            endDate: $("#newJobEndDate").val()
+            location: $("#newJobLocation").val(),
+            stipend: $("#newJobStipend").val(),
+            active: $("#newJobActive").prop("checked"),
+            startDate: $("#newJobStartDate").val(),
+            endDate: $("#newJobEndDate").val(),
+            companyId:window.localStorage.getItem("companyId")
         };
         console.log(data);
-        // $.post()
+        $.post("http://localhost:4000/company/addNewJob",{
+            data:data
+        },function (done) {
+            if(done.isSuccess==="true"){
+                $("#addNewJobModal").modal('toggle');
+                console.log("truuuuuueeeee");
+                //TODO 2
+                //Add data to html
 
-        //TODO 2
-        //Add data to html
+
+
+            }
+        })
+
+
     })
 });
