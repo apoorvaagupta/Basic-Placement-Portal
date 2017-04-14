@@ -41,8 +41,21 @@ $(document).ready(function () {
                 console.log("truuuuuueeeee");
                 //TODO 2
                 //Add data to html
+                const jobs=$("#jobs");
 
-
+                jobs.append(`
+                        <div class="col-xs-4">
+                            <p>Title:`+data.title+`</p>
+                            <p>Description:`+data.description+`</p>
+                            <p>Skills:`+data.skills+`</p>
+                            <p>Job Type:`+data.jobType+`</p>
+                            <p>Location:`+data.location+`</p>
+                            <p>Stipend:`+data.stipend+`</p>
+                            <p>Active:`+data.active+`</p>
+                            <p>Start Date:`+data.startDate+`</p>
+                            <p>End Date:`+data.endDate+`</p>
+                        </div>
+                `)
 
             }
         })
