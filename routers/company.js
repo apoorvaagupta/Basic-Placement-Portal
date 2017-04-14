@@ -74,7 +74,9 @@ router.get('/jobs', function (req, res) {
 });
 
 router.post('/jobActiveInactive',function (res,req) {
-    
+    db.updateJobActiveInactive(req.body.jobId,function (isSuccess) {
+        res.send({isSuccess:isSuccess});
+    })
 })
 
 router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/Company'));

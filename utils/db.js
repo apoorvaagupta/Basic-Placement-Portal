@@ -221,7 +221,8 @@ module.exports = {
     getStudents,
     getcompanies,
     addJob,
-    getJobs
+    getJobs,
+    updateJobActiveInactive
 };
 
 function addJob(data, done) {
@@ -251,7 +252,20 @@ function getJobs(companyId, done) {
     })
 }
 
-funct
+function updateJobActiveInactive(jobId,done){
+    jobs.findOne({where:{id:jobId}}).then(function (data) {
+        if (data === null) {
+            done("false");
+        }else{
+            console.log(data);
+            // data.active=data.active==="true"
+            // data.update({
+            //     active:
+            // })
+            done("true");
+        }
+    })
+}
 
 
 
