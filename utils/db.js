@@ -40,7 +40,7 @@ const applications = sequelize.define('applications',{
 });
 
 applications.belongsTo(student);
-//student.hasMany(applications);
+student.hasMany(applications);
 
 //function to add a student
 function addStudent(firstname,lastname,email,password, done) {
