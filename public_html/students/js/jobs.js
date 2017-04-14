@@ -19,7 +19,7 @@ $('document').ready(function () {
 
                 `<li>job ` + i + `<button onclick="function () {
     console.log(url);
-                    window.location.replace(url);
+                    window.location.replace(`+url+`);
 }">Apply</button> </li>`
 
                 // `<li>job ` + i + `<a class="btn btn-danger" href="`+url+`">Apply</a> </li>`
