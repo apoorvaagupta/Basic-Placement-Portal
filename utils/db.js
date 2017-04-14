@@ -134,6 +134,7 @@ function updatestudentprofile(id,data, done) {
 
 function getcompanies(done) {
     Company.findAll().then(function (data) {
+        //TODO check if data is not false
         console.log(data);
         done(data);
     })
@@ -206,7 +207,7 @@ function getStudents(filter1,filter2,done) {
         done(data.rows,data.count);
     })
 }
-module.exports = {addStudent, addCompany, getCompany, getStudent, getStudentProfile,updatestudentprofile,getCompanyFromId,updateCompany,getStudents,getcompanies,addJob};
+module.exports = {addStudent, addCompany, getCompany, getStudent, getStudentProfile,updatestudentprofile,getCompanyFromId,updateCompany,getStudents,getcompanies,addJob,getJobs};
 
 function addJob(data,done){
     data.skills=[data.skills]; //Change After asking sir
@@ -233,6 +234,12 @@ function addJob(data,done){
         done();
     }).catch(function (err) {
         throw err;
+    })
+}
+
+function getJobs(companyId,done) {
+    jobs.findAndCountAll({where:{companyId:companyId}}).then(function (data) {
+        done(data.rows,data.count);
     })
 }
 
