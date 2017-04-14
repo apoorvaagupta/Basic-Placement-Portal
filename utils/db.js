@@ -251,6 +251,8 @@ function getJobs(companyId, done) {
     })
 }
 
+funct
+
 
 
 

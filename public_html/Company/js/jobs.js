@@ -50,6 +50,8 @@ $(document).ready(function () {
                 console.log(done);
                 //TODO 2
                 //Add data to html
+                data.id=done.jobId;
+                console.log(data);
                 addNewJob(data);
 
             }
@@ -72,8 +74,34 @@ $(document).ready(function () {
                             <p>Active:` + data.active + `</p>
                             <p>Start Date:` + data.startDate + `</p>
                             <p>End Date:` + data.endDate + `</p>
+                            <div jobId="`+data.id+`">
+                                <button class="btn btn-default" onclick="activeInactive(this)">Active/Inactive</button>
+                                <button class="btn btn-default">Edit</button>
+                                <button class="btn btn-default">Delete</button>
+                            </div>
                             <br></br>
                         </div>
                 `)
     }
 });
+
+function activeInactive(e){
+    $.post("http://localhost:4000/company/jobActiveInactive",{
+            jobId:e.parentElement.getAttribute("jobId")
+        },function (done) {
+            if(done.isSuccess==="true"){
+                let text=$(e.parentElement.parentElement).find("p")[6];
+                if(text.innerHTML==="Active:false"){
+                    text.innerHTML="Active:true";
+                }else{
+                    text.innerHTML="Active:false";
+                }
+            }
+
+        }
+
+    );
+
+
+
+}

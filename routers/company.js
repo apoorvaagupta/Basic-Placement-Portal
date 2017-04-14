@@ -71,6 +71,10 @@ router.get('/jobs', function (req, res) {
             res.send({isSuccess: "true", rows: rows, count: count});
         }
     })
+});
+
+router.post('/jobActiveInactive',function (res,req) {
+    
 })
 
 router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/Company'));
