@@ -16,7 +16,14 @@ $('document').ready(function () {
             let url = "http://localhost:4000/student/jobs/"+i;
             console.log(url);
             jobs.append(
-                `<li>job ` + i + `<a class="btn btn-danger" href="`+url+`">Apply</a> </li>`
+
+                `<li>job ` + i + `<button onclick="function () {
+    console.log(url);
+                    window.location.replace(url);
+}">Apply</button> </li>`
+
+                // `<li>job ` + i + `<a class="btn btn-danger" href="`+url+`">Apply</a> </li>`
+
             )
         }
     });
