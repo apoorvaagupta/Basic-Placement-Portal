@@ -20,13 +20,13 @@ const student = sequelize.define('student', {
     lastname: Sequelize.STRING,
     email: Sequelize.STRING,
     password: Sequelize.STRING,
-    contact: {type: Sequelize.BIGINT,allowNull: true},
+    contact: {type: Sequelize.BIGINT, allowNull: true},
     pincode: {type: Sequelize.INTEGER, allowNull: true},
-    education:{type:Sequelize.STRING},
-    skills:Sequelize.STRING,
-    languages:Sequelize.STRING,
+    education: {type: Sequelize.STRING},
+    skills: Sequelize.STRING,
+    languages: Sequelize.STRING,
     projects: Sequelize.STRING,
-    trainings:Sequelize.STRING,
+    trainings: Sequelize.STRING,
     // cbStudent:{type:Sequelize.BOOLEAN,defaultValue:false},
     // cbCourses:Sequelize.STRING
 
@@ -37,31 +37,31 @@ const Company = sequelize.define('company', {
     name: Sequelize.STRING,
     email: Sequelize.STRING,
     password: Sequelize.STRING,
-    website:Sequelize.STRING,
-    locations:Sequelize.ARRAY(Sequelize.STRING),
-    skills:Sequelize.ARRAY(Sequelize.STRING),
-    repName:Sequelize.STRING,
-    repNumber:Sequelize.BIGINT,
+    website: Sequelize.STRING,
+    locations: Sequelize.ARRAY(Sequelize.STRING),
+    skills: Sequelize.ARRAY(Sequelize.STRING),
+    repName: Sequelize.STRING,
+    repNumber: Sequelize.BIGINT,
 });
 
 
-const jobs=sequelize.define("jobs",{
-    id:{type:Sequelize.INTEGER,autoIncrement:true,primaryKey:true},
-    title:Sequelize.STRING,
-    description:Sequelize.STRING(1234),
-    skills:Sequelize.ARRAY(Sequelize.STRING),
-    jobType:Sequelize.STRING,
-    location:Sequelize.STRING,
-    stipend:Sequelize.STRING,
-    active:Sequelize.BOOLEAN,
-    startDate:Sequelize.DATEONLY,
-    endDate:Sequelize.DATEONLY
+const jobs = sequelize.define("jobs", {
+    id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+    title: Sequelize.STRING,
+    description: Sequelize.STRING(1234),
+    skills: Sequelize.ARRAY(Sequelize.STRING),
+    jobType: Sequelize.STRING,
+    location: Sequelize.STRING,
+    stipend: Sequelize.STRING,
+    active: Sequelize.BOOLEAN,
+    startDate: Sequelize.STRING,
+    endDate: Sequelize.STRING
 });
 
 jobs.belongsTo(Company);
 Company.hasMany(jobs);
 
-const applications = sequelize.define('applications',{
+const applications = sequelize.define('applications', {
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
     status: Sequelize.STRING,
     date: Sequelize.INTEGER,
@@ -74,12 +74,12 @@ student.hasMany(applications);
 jobs.hasMany(applications);
 
 //function to add a student
-function addStudent(firstname,lastname,email,password, done) {
+function addStudent(firstname, lastname, email, password, done) {
     student.create({
         firstname: firstname,
         lastname: lastname,
         email: email,
-        password:password
+        password: password
     }).then(function (row) {
         done(row);
     }).catch(function (err) {
@@ -88,7 +88,8 @@ function addStudent(firstname,lastname,email,password, done) {
 }
 
 function getStudent(email, pass, done) {
-    student.findOne({where: {email: email, password: pass}
+    student.findOne({
+        where: {email: email, password: pass}
     }).then(function (row) {
         done(row);
         // if (row != null) {
@@ -100,31 +101,31 @@ function getStudent(email, pass, done) {
     })
 }
 
-function getStudentProfile(id,done) {
-    student.findOne({where: {id:id}}).then(function (row) {
+function getStudentProfile(id, done) {
+    student.findOne({where: {id: id}}).then(function (row) {
         done(row);
     })
 }
 
-function updatestudentprofile(id,data, done) {
-    student.findOne({where:{id:id}}).then(function (row) {
-        if(row==null){
+function updatestudentprofile(id, data, done) {
+    student.findOne({where: {id: id}}).then(function (row) {
+        if (row == null) {
             done(false);
         }
-        else{
+        else {
             row.update({
-                firstname:data.firstname,
-                lastname:data.lastname,
-                email:data.email,
+                firstname: data.firstname,
+                lastname: data.lastname,
+                email: data.email,
                 contact: data.contact,
                 pincode: data.pincode,
-                education:data.education,
-                skills:data.skills,
-                languages:data.languages,
+                education: data.education,
+                skills: data.skills,
+                languages: data.languages,
                 projects: data.projects,
-                trainings:data.trainings,
+                trainings: data.trainings,
                 cbStudent: data.cbCourses,
-                cbCourses:data.cbCourses
+                cbCourses: data.cbCourses
             }).then(function () {
                 done(true);
             });
@@ -134,6 +135,7 @@ function updatestudentprofile(id,data, done) {
 
 function getcompanies(done) {
     Company.findAll().then(function (data) {
+        //TODO check if data is not false
         console.log(data);
         done(data);
     })
@@ -155,7 +157,8 @@ function addCompany(name, email, password, done) {
 }
 
 function getCompany(email, pass, done) {
-    Company.findOne({where: {email: email, password: pass}
+    Company.findOne({
+        where: {email: email, password: pass}
     }).then(function (row) {
         if (row != null) {
             done(row);
@@ -166,8 +169,8 @@ function getCompany(email, pass, done) {
     })
 }
 
-function getCompanyFromId(id,done){
-    Company.findOne({where: {id:id}}).then(function (row) {
+function getCompanyFromId(id, done) {
+    Company.findOne({where: {id: id}}).then(function (row) {
         if (row != null) {
             done(row);
         }
@@ -178,20 +181,20 @@ function getCompanyFromId(id,done){
 
 }
 
-function updateCompany(data,id,done) {
-    Company.findOne({where:{id:id}}).then(function (data) {
-        if(data==null){
+function updateCompany(data, id, done) {
+    Company.findOne({where: {id: id}}).then(function (data) {
+        if (data == null) {
             done(null);
         }
-        else{
+        else {
             data.update({
-                name:data.name,
-                email:data.email,
-                website:data.website,
-                locations:data.locations,
-                skills:data.skills,
-                repName:data.repName,
-                repNumber:data.repNumber
+                name: data.name,
+                email: data.email,
+                website: data.website,
+                locations: data.locations,
+                skills: data.skills,
+                repName: data.repName,
+                repNumber: data.repNumber
 
             }).then(function () {
                 done(1);
@@ -201,38 +204,50 @@ function updateCompany(data,id,done) {
 
 }
 
-function getStudents(filter1,filter2,done) {
+function getStudents(filter1, filter2, done) {
     student.findAndCountAll().then(function (data) {
-        done(data.rows,data.count);
+        done(data.rows, data.count);
     })
 }
-module.exports = {addStudent, addCompany, getCompany, getStudent, getStudentProfile,updatestudentprofile,getCompanyFromId,updateCompany,getStudents,getcompanies,addJob};
+module.exports = {
+    addStudent,
+    addCompany,
+    getCompany,
+    getStudent,
+    getStudentProfile,
+    updatestudentprofile,
+    getCompanyFromId,
+    updateCompany,
+    getStudents,
+    getcompanies,
+    addJob,
+    getJobs
+};
 
-function addJob(data,done){
-    data.skills=[data.skills]; //Change After asking sir
-    if(data.startDate===""){
-        data.startDate=null;
-    }
-    if(data.endDate===""){
-        data.endDate=null;
-    }
-
+function addJob(data, done) {
+    data.skills = [data.skills]; //Change After asking sir
 
     jobs.create({
-        title:data.title,
-        description:data.description,
-        skills:data.skills,
-        jobType:data.jobType,
-        location:data.location,
-        stipend:data.stipend,
-        active:data.active,
-        startDate:data.startDate,
-        endDate:data.endDate,
-        companyId:data.companyId
+        title: data.title,
+        description: data.description,
+        skills: data.skills,
+        jobType: data.jobType,
+        location: data.location,
+        stipend: data.stipend,
+        active: data.active,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        companyId: data.companyId
     }).then(function (row) {
-        done();
+        done(row.id);
     }).catch(function (err) {
         throw err;
+    })
+}
+
+function getJobs(companyId, done) {
+    jobs.findAndCountAll({where: {companyId: companyId}}).then(function (data) {
+        done(data.rows, data.count);
     })
 }
 

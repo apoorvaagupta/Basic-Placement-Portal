@@ -8,21 +8,17 @@
 $('document').ready(function () {
 
     $.get('http://localhost:4000/student/companies?choice=all', function (data) {
-        console.log(data);
+        // console.log(data);
         const jobs = $('#jobs');
-        console.log(data.length);
+        // console.log(data.length);
         for (let i = 1; i <= data.length; i++) {
-            console.log(i);
+            // console.log(i);
             let url = "http://localhost:4000/student/jobs/"+i;
-            console.log(url);
+            // console.log(url);
             jobs.append(
 
-                `<li>job ` + i + `<button onclick="function () {
-    console.log(url);
-                    window.location.replace(`+url+`);
-}">Apply</button> </li>`
 
-                // `<li>job ` + i + `<a class="btn btn-danger" href="`+url+`">Apply</a> </li>`
+                 `<li>job ` + i + `<a class="btn btn-danger" href="`+url+`">Apply</a> </li>`
 
             )
         }
@@ -38,3 +34,4 @@ $('document').ready(function () {
 
 
 });
+
