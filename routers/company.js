@@ -60,8 +60,8 @@ router.get('/students', function (req, res) {
 });
 
 router.post('/addNewJob', function (req, res) {
-    db.addJob(req.body.data, function () {
-        res.send({isSuccess: "true"})
+    db.addJob(req.body.data, function (jobId) {
+        res.send({isSuccess: "true",jobId:jobId})
     });
 });
 

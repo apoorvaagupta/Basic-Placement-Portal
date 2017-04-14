@@ -2,15 +2,16 @@ $(document).ready(function () {
 
     $.get("http://localhost:4000/company/jobs?companyId=" + localStorage.getItem("companyId"), function (data) {
         if (data.isSuccess) {
-            for(let i=0;i<data.count;i++){
+            for (let i = 0; i < data.count; i++) {
                 addNewJob(data.rows[i]);
             }
         }
     });
 
     $("#addNewJob").click(function () {
+        document.getElementById('addNewJobForm').reset();
         $("#addNewJobModal").modal('toggle');
-    })
+    });
 
     $("#newJobActive").click(function () {
         let x = $("#showWhenActiveTrue");
@@ -19,11 +20,11 @@ $(document).ready(function () {
         } else {
             x.css("display", "none");
         }
-    })
+    });
 
     $("#addNewJobForm").submit(function (e) {
         e.preventDefault();
-    })
+    });
 
     $("#addNewJobButton").click(function () {
         //TODO 1
@@ -40,13 +41,13 @@ $(document).ready(function () {
             endDate: $("#newJobEndDate").val(),
             companyId: window.localStorage.getItem("companyId")
         };
-        console.log(data);
+        // console.log(data);
         $.post("http://localhost:4000/company/addNewJob", {
             data: data
         }, function (done) {
             if (done.isSuccess === "true") {
                 $("#addNewJobModal").modal('toggle');
-                console.log("truuuuuueeeee");
+                console.log(done);
                 //TODO 2
                 //Add data to html
                 addNewJob(data);
@@ -55,7 +56,7 @@ $(document).ready(function () {
         })
 
 
-    })
+    });
 
     function addNewJob(data) {
         const jobs = $("#jobs");
