@@ -85,7 +85,7 @@ router.post('/updateJob',function (req,res) {
     })
 });
 
-router.post('deleteJob',function (req,res) {
+router.post('/deleteJob',function (req,res) {
     db.deleteJob(req.body.data.jobId,function (isSuccess) {
         res.send({isSuccess:isSuccess});
     })
