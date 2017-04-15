@@ -86,8 +86,10 @@ router.post('/updateJob',function (req,res) {
 });
 
 router.post('deleteJob',function (req,res) {
-
-})
+    db.deleteJob(req.body.data.jobId,function (isSuccess) {
+        res.send({isSuccess:isSuccess});
+    })
+});
 
 router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/Company'));
 
