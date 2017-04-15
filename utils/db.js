@@ -143,6 +143,12 @@ function getcompanies(done) {
 
 }
 
+function getjobs(done) {
+    jobs.findAll().then(function (data) {
+        console.log(data);
+        done(data);
+    })
+}
 
 function addCompany(name, email, password, done) {
     Company.create({
@@ -221,7 +227,8 @@ module.exports = {
     getStudents,
     getcompanies,
     addJob,
-    getJobs
+    getJobs,
+    getjobs
 };
 
 function addJob(data, done) {

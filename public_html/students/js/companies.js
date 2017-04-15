@@ -5,33 +5,15 @@ $('document').ready(function () {
 
     $.get('http://localhost:4000/student/companies?choice=all', function (data) {
         console.log(data);
-        const acc = $('#accordian');
+        const companies = $('#viewCompanies');
         console.log(data.length);
         for (let i = 0; i < data.length; i++) {
             console.log(i);
-            let headingId = "heading" + i;
-            let panelId = "panel" + i;
-            console.log(headingId);
-            console.log(panelId);
+            let url = "http://localhost:4000/student/companies/"+data[i].id;
+            companies.append(
 
-            acc.append(
-                `<div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="` + headingId + `">
-                <h3 class="panel-title">
-                <a role="button" data-toggle="collapse"
-            data-parent="#accordian" href="#` + panelId + `"
-            aria-expanded="true" aria-controls="` + panelId + `">
-                ` + data[i].name + `
-            </a>
-            </h3>
-            </div>
-            <div role="tabpanel" class="panel-collapse collapse"
-            id="` + panelId + `" aria-labelledby="` + headingId + `">
-                <div class="panel-body">
-                <p>` + data[i].email + `</p>
-                </div>
-                </div>
-                </div>`
+                `<li><div><p> Name: `+data[i].name+`</p><p> Email: `+data[i].email+`</p><p> Website: `+data[i].website+`</p><p><a class="btn btn-danger" href="`+url+`">View</a> </p></div></li><br>`
+
             )
         }
     });

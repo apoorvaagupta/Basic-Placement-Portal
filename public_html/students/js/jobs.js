@@ -7,18 +7,18 @@
  */
 $('document').ready(function () {
 
-    $.get('http://localhost:4000/student/companies?choice=all', function (data) {
-        // console.log(data);
+    $.get('http://localhost:4000/student/allJobs?choice=all', function (data) {
+         console.log(data);
         const jobs = $('#jobs');
         // console.log(data.length);
-        for (let i = 1; i <= data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             // console.log(i);
-            let url = "http://localhost:4000/student/jobs/"+i;
+            let url = "http://localhost:4000/student/job/"+data[i].id;
             // console.log(url);
             jobs.append(
 
 
-                 `<li>job ` + i + `<a class="btn btn-danger" href="`+url+`">Apply</a> </li>`
+                `<li><div><p> Title: `+data[i].title+`</p><p> Description: `+data[i].description+`</p><p> Skills: `+data[i].skills+`</p><p><a class="btn btn-danger" href="`+url+`">Apply</a> </p></div></li><br>`
 
             )
         }

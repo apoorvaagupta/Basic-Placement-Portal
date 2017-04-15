@@ -7,6 +7,7 @@
     const router = express.Router();
     const path = require('path');
     const db = require('./../utils/db');
+    const job = require('./jobs');
 
     router.use(bp.json());
     router.use(bp.urlencoded({extended: true}));
@@ -71,6 +72,16 @@
             res.send(data);
         });
     });
+
+    router.get('/allJobs',function (req,res) {
+        console.log(req.query.choice);
+        db.getjobs(function (data) {
+            // console.log(data);
+            res .send(data);
+        });
+    });
+
+    router.get('/job',job);
 
     router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students'));
 
