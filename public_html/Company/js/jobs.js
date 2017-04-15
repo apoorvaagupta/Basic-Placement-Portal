@@ -131,7 +131,7 @@ $(document).ready(function () {
                             <div jobId="` + data.id + `">
                                 <button class="btn btn-default" onclick="activeInactive(this)">Active/Inactive</button>
                                 <button class="btn btn-default" onclick="editJob(this)">Edit</button>
-                                <button class="btn btn-default">Delete</button>
+                                <button class="btn btn-default" onclick="deleteJob(this)">Delete</button>
                             </div>
                             <br></br>
                         </div>
@@ -189,4 +189,15 @@ function editJob(e) {
     $("#addNewJobButton").attr("updateJob", "true").attr("jobId",e.parentElement.getAttribute("jobId"));
 
     $("#addNewJobModal").modal('toggle');
+}
+
+function deleteJob(e){
+    // $.post("http://localhost:4000/company/deleteJob",{
+    //     data:{jobId:e.parentElement.getAttribute("jobId")}
+    // },function (done) {
+    //     if(done.isSuccess==="true"){
+    //         $.remove(e.parentElement.parentElement);
+    //     }
+    // })
+    $.remove(e.parentElement.parentElement);
 }
