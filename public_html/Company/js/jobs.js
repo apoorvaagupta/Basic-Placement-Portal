@@ -192,12 +192,12 @@ function editJob(e) {
 }
 
 function deleteJob(e){
-    // $.post("http://localhost:4000/company/deleteJob",{
-    //     data:{jobId:e.parentElement.getAttribute("jobId")}
-    // },function (done) {
-    //     if(done.isSuccess==="true"){
-    //         $.remove(e.parentElement.parentElement);
-    //     }
-    // })
-    $.remove(e.parentElement.parentElement);
+    $.post("http://localhost:4000/company/deleteJob",{
+        data:{jobId:e.parentElement.getAttribute("jobId")}
+    },function (done) {
+        if(done.isSuccess==="true"){
+             $(e.parentElement.parentElement).remove();
+        }
+    })
+
 }

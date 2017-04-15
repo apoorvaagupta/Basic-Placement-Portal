@@ -223,7 +223,8 @@ module.exports = {
     addJob,
     getJobs,
     updateJobActiveInactive,
-    updateJob
+    updateJob,
+    deleteJob
 };
 
 function addJob(data, done) {
@@ -298,7 +299,13 @@ function updateJob(data, done) {
     })
 }
 
-
+function deleteJob(jobId,done){
+    jobs.findOne({where:{id:jobId}}).then(function (row) {
+        row.destroy().then(function () {
+            done("true");
+        });
+    })
+}
 
 
 
