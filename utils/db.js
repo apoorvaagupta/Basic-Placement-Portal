@@ -150,6 +150,18 @@ function getjobs(done) {
     })
 }
 
+
+function getjob(jobId, done) {
+    jobs.findOne({where: {id: jobId}}).then(function (data) {
+        done(data);
+    })
+}
+
+
+
+
+
+
 function addCompany(name, email, password, done) {
     Company.create({
         name: name,
@@ -228,6 +240,7 @@ module.exports = {
     getcompanies,
     addJob,
     getjobs,
+    getjob,
     getJobs,
     updateJobActiveInactive,
     updateJob,
