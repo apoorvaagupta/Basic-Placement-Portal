@@ -80,7 +80,7 @@
         });
     });
 
-    router.use('/job',job);
+    router.use('/view',job);
 
     router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students'));
 

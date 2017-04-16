@@ -13,7 +13,7 @@ $('document').ready(function () {
         // console.log(data.length);
         for (let i = 0; i < data.length; i++) {
             // console.log(i);
-            let url = "http://localhost:4000/student/job/"+data[i].id;
+            let url = "http://localhost:4000/student/view/job?id="+data[i].id;
             // console.log(url);
             jobs.append(
 
