@@ -7,7 +7,10 @@
     const router = express.Router();
     const path = require('path');
     const db = require('./../utils/db');
-    const job = require('./jobs');
+    // const job = require('./jobs');
+
+router.use('/', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html'));
+
 
     router.use(bp.json());
     router.use(bp.urlencoded({extended: true}));
@@ -80,7 +83,17 @@
         });
     });
 
-    router.use('/view',job);
+    router.use('/view', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students/job'));
+
+    router.get('/job',function (req, res) {
+        console.log("yayayayayayayayaya");
+        console.log(req.query.id);
+
+        db.getjob(req.query.id, function (data) {
+            // console.log(data);
+            res.send(data);
+        });
+    });
 
     router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students'));
 
