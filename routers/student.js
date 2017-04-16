@@ -11,7 +11,6 @@
 
     router.use(bp.json());
     router.use(bp.urlencoded({extended: true}));
-    router.use(express.static(path.join(__dirname, '/public_html/students')));
     router.post('/add', function (req, res) {
 
         console.log(req.body.email, req.body.password);
@@ -77,11 +76,11 @@
         console.log(req.query.choice);
         db.getjobs(function (data) {
             // console.log(data);
-            res .send(data);
+            res.send(data);
         });
     });
 
-    router.get('/job',job);
+    router.use('/job',job);
 
     router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students'));
 
