@@ -227,8 +227,11 @@ module.exports = {
     getStudents,
     getcompanies,
     addJob,
+    getjobs,
     getJobs,
-    getjobs
+    updateJobActiveInactive,
+    updateJob,
+    deleteJob
 };
 
 function addJob(data, done) {
@@ -258,7 +261,58 @@ function getJobs(companyId, done) {
     })
 }
 
+function updateJobActiveInactive(jobId, done) {
+    jobs.findOne({where: {id: jobId}}).then(function (data) {
+        if (data === null) {
+            done("false");
+        } else {
+            console.log(data.active);
+            data.active = data.active !== true;
+            data.update({
+                active: data.active
+            }).then(function () {
+                console.log(data.active);
+                done("true");
+            });
 
+        }
+    })
+}
+
+function updateJob(data, done) {
+    console.log(data.jobId);
+    data.skills = [data.skills]; //Change After asking sir
+    jobs.findOne({where: {id: data.jobId}}).then(function (row) {
+        // console.log(data);
+        if (row === null) {
+            done("false");
+        } else {
+            console.log("jiiii");
+            row.update({
+                title: data.title,
+                description: data.description,
+                skills: data.skills,
+                jobType: data.jobType,
+                location: data.location,
+                stipend: data.stipend,
+                active: data.active,
+                startDate: data.startDate,
+                endDate: data.endDate,
+            }).then(function () {
+                done("true");
+            });
+
+        }
+    })
+}
+
+function deleteJob(jobId,done){
+    jobs.findOne({where:{id:jobId}}).then(function (row) {
+        row.destroy().then(function () {
+            done("true");
+        });
+    })
+}
 
 
 

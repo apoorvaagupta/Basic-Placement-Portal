@@ -71,7 +71,25 @@ router.get('/jobs', function (req, res) {
             res.send({isSuccess: "true", rows: rows, count: count});
         }
     })
-})
+});
+
+router.post('/jobActiveInactive',function (req,res) {
+    db.updateJobActiveInactive(req.body.jobId,function (isSuccess) {
+        res.send({isSuccess:isSuccess});
+    })
+});
+
+router.post('/updateJob',function (req,res) {
+    db.updateJob(req.body.data,function (isSuccess) {
+        res.send({isSuccess:isSuccess});
+    })
+});
+
+router.post('/deleteJob',function (req,res) {
+    db.deleteJob(req.body.data.jobId,function (isSuccess) {
+        res.send({isSuccess:isSuccess});
+    })
+});
 
 router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/Company'));
 
