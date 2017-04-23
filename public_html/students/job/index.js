@@ -30,7 +30,8 @@ $('document').ready(function () {
         };
         console.log(application);
         $.post('http://localhost:4000/student/apply/', application,function (data) {
-            console.log(data);
+            console.log(data.isSuccess);
+
         })
 
     });
