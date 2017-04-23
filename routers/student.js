@@ -88,11 +88,19 @@ router.get('/allJobs', function (req, res) {
 
 router.use('/view', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students/job'));
 
-router.get('/job', function (req, res) {
-    console.log("yayayayayayayayaya");
-    console.log(req.query.id);
+router.use('/viewCompanies', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students/company.html'));
 
-    db.getjob(req.query.id, function (data) {
+router.get('/company',function (req,res) {
+    db.getCompanyFromId(req.query.id,function (data) {
+        res.send(data);
+    })
+});
+
+router.get('/job', function (req, res) {
+
+
+
+    db.getApplication(req.query.studentId, req.query.jobId, function (data) {
         // console.log(data);
         res.send(data);
     });
@@ -104,12 +112,37 @@ router.post('/apply', function (req, res) {
             res.send({
                 isSuccess: true
             });
-        }else {
+        } else {
             res.send({
                 isSuccess: false
             });
         }
 
+    })
+
+
+});
+
+router.get('/allApplications', function (req, res) {
+    let obj = [];
+    db.getAllApplications(req.query.studentId, function (data) {
+        if (data != null) {
+            for (let i = 0; i < data.length; i++) {
+                db.getjob(data[i].jobId, function (jobData) {
+                    obj[i] = {
+                        title: jobData.title,
+                        jobId: data[i].jobId,
+                        jobAppNo: data[i].id,
+                        status: data[i].status
+                    };
+                    if (i == data.length - 1) {
+                        res.send(obj);
+                    }
+                })
+            }
+        } else {
+            res.send(data);
+        }
     })
 });
 

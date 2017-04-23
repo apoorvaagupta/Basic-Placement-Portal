@@ -102,7 +102,7 @@ router.get("/applications", function (req, res) {
                 // console.log("i");
                 console.log(rows[i].dataValues.id);
                 jobRows.push(rows[i].dataValues);
-                db.getApplication(rows[i].id).then(function (data) {
+                db.getApplicationFromJobId(rows[i].id).then(function (data) {
                     // console.log(data);
                     // console.log("-------------------");
                     // console.log(data[0].dataValues);
