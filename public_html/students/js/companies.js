@@ -9,7 +9,7 @@ $('document').ready(function () {
         console.log(data.length);
         for (let i = 0; i < data.length; i++) {
             console.log(i);
-            let url = "http://localhost:4000/student/companies/"+data[i].id;
+            let url = "http://localhost:4000/student/viewCompanies?id="+data[i].id;
             companies.append(
 
                 `<li><div><p> Name: `+data[i].name+`</p><p> Email: `+data[i].email+`</p><p> Website: `+data[i].website+`</p><p><a class="btn btn-danger" href="`+url+`">View</a> </p></div></li><br>`

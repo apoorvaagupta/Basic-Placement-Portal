@@ -88,7 +88,16 @@ router.get('/allJobs', function (req, res) {
 
 router.use('/view', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students/job'));
 
+router.use('/viewCompanies', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students/company.html'));
+
+router.get('/company',function (req,res) {
+    db.getCompanyFromId(req.query.id,function (data) {
+        res.send(data);
+    })
+});
+
 router.get('/job', function (req, res) {
+
 
 
     db.getApplication(req.query.studentId, req.query.jobId, function (data) {
