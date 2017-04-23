@@ -91,6 +91,23 @@ router.post('/deleteJob',function (req,res) {
     })
 });
 
+router.get("/applications",function (req,res) {
+    db.getJobs(req.query.companyId, function (rows, count) {
+        if (count !== 0) {
+            // console.log(rows);
+            let jobIds=[];
+            for(let i=0;i<rows.length;i++){
+                jobIds.push(rows[i].id);
+            }
+            console.log(jobIds);
+
+            let finalRows=db.getApplications(jobIds);
+            console.log(finalRows);
+            res.send({isSuccess:"true",data:finalRows});
+        }
+    })
+});
+
 router.use('/dashboard', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/Company'));
 
 module.exports = router;
