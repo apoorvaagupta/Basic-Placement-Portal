@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $.get("http://localhost:4000/company/jobs?companyId=" + localStorage.getItem("companyId"), function (data) {
-        if (data.isSuccess) {
+        if (data.isSuccess==="true") {
             for (let i = 0; i < data.count; i++) {
                 addNewJob(data.rows[i]);
             }

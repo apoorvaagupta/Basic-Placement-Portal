@@ -290,8 +290,8 @@ function updateJob(data, done) {
     })
 }
 
-function deleteJob(jobId,done){
-    jobs.findOne({where:{id:jobId}}).then(function (row) {
+function deleteJob(jobId, done) {
+    jobs.findOne({where: {id: jobId}}).then(function (row) {
         row.destroy().then(function () {
             done("true");
         });
@@ -346,5 +346,65 @@ module.exports = {
     deleteJob,
     addApplication,
     getApplication,
-    getAllApplications
+    getAllApplications,
+    getApplications
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getApplications(jobIds) {
+    let finalRows = [];
+    console.log(jobIds)
+    for (let i = 0; i < jobIds.length; i++) {
+        applications.findAll({
+            where: {
+                jobId: 5
+            }
+        }).then(function (data) {
+            finalRows.push(data);
+            if(i===jobIds.length-1){
+                console.log("finalrows");
+                console.log(finalRows);
+                return finalRows;
+            }
+        });
+    }
+
+
+}
