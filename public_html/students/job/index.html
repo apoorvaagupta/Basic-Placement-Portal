@@ -3,14 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/students/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 
-hellllooooo
+<div id="wrapper">
 
-<script src="/students/js/jquery.js"></script>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Hiring Blocks</a>
+        </div>
+        <!-- /.navbar-header -->
 
-<script src="/students/js/bootstrap.js"></script>
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>Bhavya</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Today 10:46 pm</em>
+                                    </span>
+                            </div>
+                            <div>Hello</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Student
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+
+                    <li>
+                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="profile.html"><i class="fa fa-user fa-fw"></i> Profile</a>
+                    </li>
+                    <li>
+                        <a href="companies.html"><i class="fa fa-users fa-fw"></i> Companies</a>
+                    </li>
+                    <li>
+                        <a href="jobs.html" class="active"><i class="fa fa-users fa-fw"></i> Jobs</a>
+                    </li>
+                    <li>
+                        <a href="applications.html"><i class="fa fa-users fa-fw"></i> My Applications</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-coll
+!-->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Jobs</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+
+        <div class="row">
+            <div id="job"></div>
+            <div id="showWhenApplyIsClicked">
+                <label for="answer">why should you be selected for this job?</label><br>
+                <textarea id="answer" style="height: 200px; width: 600px"></textarea><br>
+                <button id="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.js"></script>
+
+<script src="/js/bootstrap.js"></script>
 
 <script src="./index.js"></script>
 </body>

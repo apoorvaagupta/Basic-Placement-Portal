@@ -1,7 +1,6 @@
 /**
  * Created by apoorvaa_gupta on 22/3/17.
  */
-
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('hb', 'cbuser', 'cbpass', {
     host: 'localhost',
@@ -44,7 +43,6 @@ const Company = sequelize.define('company', {
     repNumber: Sequelize.BIGINT,
 });
 
-
 const jobs = sequelize.define("jobs", {
     id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
     title: Sequelize.STRING,
@@ -58,9 +56,6 @@ const jobs = sequelize.define("jobs", {
     endDate: Sequelize.STRING
 });
 
-jobs.belongsTo(Company);
-Company.hasMany(jobs);
-
 const applications = sequelize.define('applications', {
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
     status: Sequelize.STRING,
@@ -68,12 +63,13 @@ const applications = sequelize.define('applications', {
     app: Sequelize.STRING
 });
 
+jobs.belongsTo(Company);
+Company.hasMany(jobs);
 applications.belongsTo(student);
 applications.belongsTo(jobs);
 student.hasMany(applications);
 jobs.hasMany(applications);
 
-//function to add a student
 function addStudent(firstname, lastname, email, password, done) {
     student.create({
         firstname: firstname,
@@ -150,17 +146,11 @@ function getjobs(done) {
     })
 }
 
-
 function getjob(jobId, done) {
     jobs.findOne({where: {id: jobId}}).then(function (data) {
         done(data);
     })
 }
-
-
-
-
-
 
 function addCompany(name, email, password, done) {
     Company.create({
@@ -227,25 +217,6 @@ function getStudents(filter1, filter2, done) {
         done(data.rows, data.count);
     })
 }
-module.exports = {
-    addStudent,
-    addCompany,
-    getCompany,
-    getStudent,
-    getStudentProfile,
-    updatestudentprofile,
-    getCompanyFromId,
-    updateCompany,
-    getStudents,
-    getcompanies,
-    addJob,
-    getjobs,
-    getjob,
-    getJobs,
-    updateJobActiveInactive,
-    updateJob,
-    deleteJob
-};
 
 function addJob(data, done) {
     data.skills = [data.skills]; //Change After asking sir
@@ -327,62 +298,37 @@ function deleteJob(jobId,done){
     })
 }
 
+function addApplication(data, done) {
+    applications.create({
+        studentId: data.studentId,
+        jobId: data.jobId,
+        app: data.answer,
+        status: data.status
 
+    }).then(function (row) {
+        done(row);
+    }).catch(function (err) {
+        throw err;
+    })
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = {
+    addStudent,
+    addCompany,
+    getCompany,
+    getStudent,
+    getStudentProfile,
+    updatestudentprofile,
+    getCompanyFromId,
+    updateCompany,
+    getStudents,
+    getcompanies,
+    addJob,
+    getjobs,
+    getjob,
+    getJobs,
+    updateJobActiveInactive,
+    updateJob,
+    deleteJob,
+    addApplication
+};
