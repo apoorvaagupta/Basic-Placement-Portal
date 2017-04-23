@@ -89,10 +89,9 @@ router.get('/allJobs', function (req, res) {
 router.use('/view', express.static(__dirname.substr(0, __dirname.length - 7) + 'public_html/students/job'));
 
 router.get('/job', function (req, res) {
-    console.log("yayayayayayayayaya");
-    console.log(req.query.id);
 
-    db.getjob(req.query.id, function (data) {
+
+    db.getApplication(req.query.studentId, req.query.jobId, function (data) {
         // console.log(data);
         res.send(data);
     });
@@ -104,12 +103,37 @@ router.post('/apply', function (req, res) {
             res.send({
                 isSuccess: true
             });
-        }else {
+        } else {
             res.send({
                 isSuccess: false
             });
         }
 
+    })
+
+
+});
+
+router.get('/allApplications', function (req, res) {
+    let obj = [];
+    db.getAllApplications(req.query.studentId, function (data) {
+        if (data != null) {
+            for (let i = 0; i < data.length; i++) {
+                db.getjob(data[i].jobId, function (jobData) {
+                    obj[i] = {
+                        title: jobData.title,
+                        jobId: data[i].jobId,
+                        jobAppNo: data[i].id,
+                        status: data[i].status
+                    };
+                    if (i == data.length - 1) {
+                        res.send(obj);
+                    }
+                })
+            }
+        } else {
+            res.send(data);
+        }
     })
 });
 

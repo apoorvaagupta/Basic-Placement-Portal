@@ -312,6 +312,20 @@ function addApplication(data, done) {
     })
 }
 
+function getApplication(studId,jobId,done) {
+    applications.find({where: {studentId: studId, jobId: jobId}}).then(function (data) {
+        jobs.findOne({where: {id: jobId}}).then(function (data2) {
+            done({appData: data, jobData: data2});
+        });
+    })
+}
+
+function getAllApplications(studId,done) {
+    applications.findAll({where: {studentId: studId}}).then(function (data) {
+            done(data);
+    });
+}
+
 module.exports = {
     addStudent,
     addCompany,
@@ -330,5 +344,7 @@ module.exports = {
     updateJobActiveInactive,
     updateJob,
     deleteJob,
-    addApplication
+    addApplication,
+    getApplication,
+    getAllApplications
 };

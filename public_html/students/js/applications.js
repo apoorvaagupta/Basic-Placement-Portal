@@ -4,18 +4,20 @@
 
 $('document').ready(function () {
 
-    $.get('http://localhost:4000/student/allApplications', function (data) {
+    $.get('http://localhost:4000/student/allApplications?studentId=' + localStorage.getItem("studentId"), function (data) {
+        console.log(data.length);
         console.log(data);
         const jobs = $('#applications');
-        // console.log(data.length);
+
         for (let i = 0; i < data.length; i++) {
             // console.log(i);
-            let url = "http://localhost:4000/student/view?id="+data[i].id;
+            let url = "http://localhost:4000/student/view?id="+data[i].jobId;
             // console.log(url);
             jobs.append(
 
 
-                `<li><div><p> Title: `+data[i].title+`</p><p> Description: `+data[i].description+`</p><p> Skills: `+data[i].skills+`</p><p><a class="btn btn-danger" href="`+url+`">Apply</a> </p></div></li><br>`
+                `<li><div><p>Application Id:` + data[i].jobAppNo + `</p><p> Title: ` +data[i].title+`</p>
+                 <p> Status: `+data[i].status+`</p><p><a class="btn btn-danger" href="`+url+`">View</a> </p></div></li><br>`
 
             )
         }
