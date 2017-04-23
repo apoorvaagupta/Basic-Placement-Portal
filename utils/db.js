@@ -331,7 +331,7 @@ module.exports = {
     updateJobActiveInactive,
     updateJob,
     deleteJob,
-    addApplication, getApplications
+    addApplication, getApplication
 };
 
 
@@ -372,23 +372,18 @@ module.exports = {
 
 
 
-function getApplications(jobIds) {
-    let finalRows = [];
-    console.log(jobIds)
-    for (let i = 0; i < jobIds.length; i++) {
-        applications.findAll({
-            where: {
-                jobId: 5
-            }
-        }).then(function (data) {
-            finalRows.push(data);
-            if(i===jobIds.length-1){
-                console.log("finalrows");
-                console.log(finalRows);
-                return finalRows;
-            }
-        });
-    }
+
+
+
+
+
+function getApplication(jobId) {
+    console.log(jobId);
+    return applications.findAll({
+        where: {
+            jobId: jobId
+        }
+    });
 
 
 }

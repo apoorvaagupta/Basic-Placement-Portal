@@ -61,7 +61,7 @@ router.get('/students', function (req, res) {
 
 router.post('/addNewJob', function (req, res) {
     db.addJob(req.body.data, function (jobId) {
-        res.send({isSuccess: "true",jobId:jobId})
+        res.send({isSuccess: "true", jobId: jobId})
     });
 });
 
@@ -73,37 +73,52 @@ router.get('/jobs', function (req, res) {
     })
 });
 
-router.post('/jobActiveInactive',function (req,res) {
-    db.updateJobActiveInactive(req.body.jobId,function (isSuccess) {
-        res.send({isSuccess:isSuccess});
+router.post('/jobActiveInactive', function (req, res) {
+    db.updateJobActiveInactive(req.body.jobId, function (isSuccess) {
+        res.send({isSuccess: isSuccess});
     })
 });
 
-router.post('/updateJob',function (req,res) {
-    db.updateJob(req.body.data,function (isSuccess) {
-        res.send({isSuccess:isSuccess});
+router.post('/updateJob', function (req, res) {
+    db.updateJob(req.body.data, function (isSuccess) {
+        res.send({isSuccess: isSuccess});
     })
 });
 
-router.post('/deleteJob',function (req,res) {
-    db.deleteJob(req.body.data.jobId,function (isSuccess) {
-        res.send({isSuccess:isSuccess});
+router.post('/deleteJob', function (req, res) {
+    db.deleteJob(req.body.data.jobId, function (isSuccess) {
+        res.send({isSuccess: isSuccess});
     })
 });
 
-router.get("/applications",function (req,res) {
+router.get("/applications", function (req, res) {
     db.getJobs(req.query.companyId, function (rows, count) {
         if (count !== 0) {
             // console.log(rows);
-            let jobIds=[];
-            for(let i=0;i<rows.length;i++){
-                jobIds.push(rows[i].id);
-            }
-            console.log(jobIds);
 
-            let finalRows=db.getApplications(jobIds);
-            console.log(finalRows);
-            res.send({isSuccess:"true",data:finalRows});
+            let finalRows = [];
+            let jobRows=[];
+            for (let i = 0; i < rows.length; i++) {
+                // console.log("i");
+                console.log(rows[i].dataValues.id);
+                jobRows.push(rows[i].dataValues);
+                db.getApplication(rows[i].id).then(function (data) {
+                    // console.log(data);
+                    // console.log("-------------------");
+                    // console.log(data[0].dataValues);
+                    for (let j = 0; j < data.length; j++) {
+                        console.log(jobRows);
+                        finalRows.push(data[j].dataValues);
+                    }
+
+                    if (i === rows.length - 1) {
+                        console.log("yo");
+                        // console.log(finalRows);
+                        res.send({isSuccess: "true", data: finalRows, jobs: jobRows});
+                    }
+                });
+
+            }
         }
     })
 });
