@@ -11,11 +11,12 @@ $('document').ready(function () {
         console.log("the job data");
         console.log(data);
         job.append(`JOB TITLE : `+data.title + `<br>JOB DESCRIPTION : ` + data.description + `<br><br><button id="apply">Apply</button> <br><br>`);
+        $('#apply').click(function () {
+            $('#showWhenApplyIsClicked').css("display","block");
+        });
     });
 
-    $('#apply').click(function () {
-        $('#showWhenApplyIsClicked').removeAttr("style");
-    });
+
 
 
     $('#submit').click(function () {
